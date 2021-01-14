@@ -1,3 +1,5 @@
+const { sendEmbedMessage } = require('./helpers.js');
+
 module.exports = {
   matchCommand: function (Discord, config, logger, message, command, args) {
     switch(command) {
