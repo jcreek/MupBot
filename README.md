@@ -32,6 +32,12 @@ function commandExample (Discord, config, logger, message, command, args) {
 
 Notice the naming convention for the function is 'command' followed by your desired command, in camelCase. For example, a command of `thisisalongcommand` would have a function called `commandThisIsALongCommand`.
 
+## Feature suggestions
+
+Here are some ideas for features you could have a go at adding:
+
+- Response randomiser - have the bot give a random response from a set of responses whenever someone tags it
+
 ## Running the bot using Docker
 
 ### Installing Docker
