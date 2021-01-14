@@ -13,6 +13,11 @@ client.once('ready', () =>{
 })
 
 client.on('message', function (message) {
+  // If someone tags the bot
+  if (message.mentions.has(client.user.id)) {
+        message.channel.send(`That's my name, don't wear it out!`);
+  };
+
   // Ignore messages from the bot and that don't begin with the prefix, and do not run in DMs to bot
   if (message.author.bot) return;
   if (!message.content.startsWith(config.prefix)) return;
