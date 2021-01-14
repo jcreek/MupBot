@@ -1,0 +1,16 @@
+{
+  "name": "mupbot",
+  "version": "1.0.0",
+  "description": "An open source Discord bot for helping coders gain experience working on open source projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jcreek",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "12.4.1",
+    "winston": "3.3.3",
+    "winston-elasticsearch": "^0.7.12"
+  }
+}
