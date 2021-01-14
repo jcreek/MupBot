@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2020": true,
+    "jquery": true
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:node/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error"
+    ],
+    "linebreak-style": 2,
+    "no-unused-vars": "warn",
+    "no-param-reassign": "off",
+    "no-alert": "warn"
+  }
+}
