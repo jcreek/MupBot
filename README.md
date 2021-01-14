@@ -6,6 +6,8 @@ An open source Discord bot for helping coders gain experience working on open so
 
 You should fork this project and submit Pull Requests with your changes, ready to be code reviewed and merged into this project.
 
+If you want to test this code you will need to contact jcreek to get the `elasticsearch_address` and `token` needed in `config.json`. These must not be shared online or committed to the repo.
+
 ## Add a command
 
 To add a command, edit the `commands.js` file.
