@@ -1,0 +1,8 @@
+{
+  "elasticsearch" : {
+    "elasticsearch_address" : "http://elasticsearchurlgoeshere:9200",
+    "elasticsearch_index_pattern" : "[logs-mupbot-]YYYY.MM.DD"
+  },
+  "prefix": "!",
+  "token": "discordtokengoeshere"
+}
