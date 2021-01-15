@@ -87,7 +87,7 @@ function commandUrbanDictionary(Discord, config, logger, message, command, args)
       }
     })
     .catch(function (error) {
-      logger.error('Something went wrong', error);
+      logger.error('Failed to make GET request to Urban Dictionary API', error);
     });
   }
 }
