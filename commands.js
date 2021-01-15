@@ -44,7 +44,7 @@ function commandUrbanDictionary(Discord, config, logger, message, command, args)
     return message.channel.send(`You didn't provide any arguments, ${message.author}!\nCorrect Usage: \`${config.prefix}ud <query>\``);
   }
   else if (args[0] != "") {
-    var searchQuery = args[0];
+    const searchQuery = args[0];
 
     // Send a GET request to urban dictionary including the search query
     axios({
