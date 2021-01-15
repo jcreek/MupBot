@@ -16,4 +16,18 @@ module.exports = {
         message.channel.send('There was a problem, sorry!');
       }
     },
+    // Trim a string to a specific character length
+    trim: function (Discord, logger, string, max) {
+      try {
+        if (string.length > max) {
+          return `${string.slice(0, max - 3)}...`;
+        }
+        else {
+          return string;
+        }
+      } catch (error) {
+        logger.error('Failed to trim selection', error);
+        message.channel.send('There was a problem, sorry!');
+      }
+    }
 };
