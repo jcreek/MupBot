@@ -17,18 +17,33 @@ module.exports = {
 };
 
 function commandHelp (Discord, config, logger, message, command, args) {
-  const msg = `
+  const helpMessage = `
 The commands available to you are:
-- \`${config.prefix}ud <query>\`   - Search Urban Dictionary
+\`${config.prefix}ud <query>\`   - Search Urban Dictionary
+\`${config.prefix}help <command>\` - For help with a specific command add the command as an argument
   `;
 
-  message.channel.send(msg);
+  // Specify specific command help
+  if (args.length > 0) {
+    switch (args[0]) {
+      case 'ud':
+        message.channel.send(`Usage: \`${config.prefix}ud <query>\`    *Example: ${config.prefix}ud yeet*`);
+        break;
+      default:
+        message.channel.send(`That command is not one I know yet - but you could add it! To find out more visit ${config.github_url}`);
+    }
+  }
+  else {
+    message.channel.send(helpMessage);
+  }
+
+
 }
 
 function commandUrbanDictionary(Discord, config, logger, message, command, args) {
   if (!args.length) {
     //If the command is used incorrectly without arguments
-    return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
+    return message.channel.send(`You didn't provide any arguments, ${message.author}!\nCorrect Usage: \`${config.prefix}ud <query>\``);
   }
   else if (args[0] != "") {
     var searchQuery = args[0];
