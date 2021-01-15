@@ -1,4 +1,4 @@
-const { sendEmbedMessage, trim } = require('./helpers.js');
+const { generateEmbedMessage, trim } = require('./helpers.js');
 const axios = require('axios');
 
 module.exports = {
@@ -36,8 +36,6 @@ The commands available to you are:
   else {
     message.channel.send(helpMessage);
   }
-
-
 }
 
 function commandUrbanDictionary(Discord, config, logger, message, command, args) {
@@ -60,7 +58,7 @@ function commandUrbanDictionary(Discord, config, logger, message, command, args)
       if (answers.length > 0) {
         try {
           // Set up rich embed for the command to return the API response, add the first responses URL with an example of the usage and rating
-          const embed = sendEmbedMessage(Discord, logger, message, answers[0].word, trim(Discord, logger, answers[0].definition, 1024));
+          const embed = generateEmbedMessage(Discord, logger, message, answers[0].word, trim(Discord, logger, answers[0].definition, 1024));
           embed.setURL(answers[0].permalink)
           .addFields(
             { name: 'Example', value: trim(Discord, logger, answers[0].example, 1024) },

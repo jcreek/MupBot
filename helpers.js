@@ -1,6 +1,6 @@
 module.exports = {
   // Return a stylised embed for consistancy - this allows you to add additional properties like fields
-  sendEmbedMessage: function (Discord, logger, message, title, description, colour = '#F4B400') {
+  generateEmbedMessage : function (Discord, logger, message, title, description, colour = '#F4B400') {
     // For documentation see https://github.com/AnIdiotsGuide/discordjs-bot-guide/blob/master/first-bot/using-embeds-in-messages.md
     try {
       const embed = new Discord.MessageEmbed()
