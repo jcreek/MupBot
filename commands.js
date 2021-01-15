@@ -46,7 +46,7 @@ function commandUrbanDictionary(Discord, config, logger, message, command, args)
   else if (args[0] != "") {
     var searchQuery = args[0];
 
-    // Send a POST request to urban dictionary including the search query
+    // Send a GET request to urban dictionary including the search query
     axios({
       method: 'get',
       url: 'http://api.urbandictionary.com/v0/define',
