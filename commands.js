@@ -3,6 +3,8 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const got = require('got');
 
+const adultChannelName = 'adult-only-chat';
+
 module.exports = {
   dailyTasks: function (client) {
     sendDailyDilbert(client);
@@ -13,7 +15,13 @@ module.exports = {
         commandHelp(Discord, config, logger, message, command, args);
         break;
       case 'ud':
-        commandUrbanDictionary(Discord, config, logger, message, command, args);
+        if (message.channel.name === adultChannelName) {
+          commandUrbanDictionary(Discord, config, logger, message, command, args);
+        }
+        else {
+          const channel = message.client.channels.cache.find((channel) => channel.name === adultChannelName);
+          message.channel.send(`This command is restricted to the <#${channel.id}> channel.`);
+        }
         break;
       default:
         message.channel.send(`That command is not one I know yet - but you could add it! To find out more visit ${config.github_url}`);
