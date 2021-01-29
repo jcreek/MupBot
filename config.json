@@ -4,6 +4,6 @@
     "elasticsearch_index_pattern" : "[logs-mupbot-]YYYY.MM.DD"
   },
   "github_url" : "https://github.com/jcreek/MupBot",
-  "prefix": "!",
   "token": "discordtokengoeshere"
+  "prefix": "?",
 }
