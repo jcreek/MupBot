@@ -2,6 +2,8 @@ const { generateEmbedMessage, trim } = require('./helpers.js');
 const axios = require('axios');
 
 module.exports = {
+  dailyTasks: function (client) {
+  },
   matchCommand: function (Discord, config, logger, message, command, args) {
     switch(command) {
       case 'help':

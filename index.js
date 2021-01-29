@@ -3,14 +3,22 @@ const winston = require('winston');
 const Elasticsearch = require('winston-elasticsearch');
 const config = require('./config.json');
 const { initialiseLogger } = require('./logger.js');
-const { matchCommand } = require('./commands.js');
+const { matchCommand, dailyTasks } = require('./commands.js');
 const client = new Discord.Client();
 const logger = initialiseLogger(config, winston, Elasticsearch);
 
 client.login(config.token);
-client.once('ready', () =>{
+client.once('ready', () => {
   logger.info('MupBot logged in successfully!');
-})
+
+  setInterval(function () {
+    const hour = new Date().getHours();
+    if (hour == 8) {
+      // Run the daily tasks at 8am every day (server time)
+      dailyTasks(client);
+    }
+  }, 1000 * 60 * 60); // every hour
+});
 
 client.on('message', function (message) {
   // If someone tags the bot
