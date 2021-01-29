@@ -10,7 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
     "discord.js": "12.4.1",
+    "got": "^11.8.1",
     "winston": "3.3.3",
     "winston-elasticsearch": "^0.7.12"
   }

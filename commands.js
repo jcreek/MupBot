@@ -1,8 +1,11 @@
 const { generateEmbedMessage, trim } = require('./helpers.js');
 const axios = require('axios');
+const cheerio = require('cheerio');
+const got = require('got');
 
 module.exports = {
   dailyTasks: function (client) {
+    sendDailyDilbert(client);
   },
   matchCommand: function (Discord, config, logger, message, command, args) {
     switch(command) {
@@ -91,5 +94,30 @@ function commandUrbanDictionary(Discord, config, logger, message, command, args)
     .catch(function (error) {
       logger.error('Failed to make GET request to Urban Dictionary API', error);
     });
+
+async function sendDailyDilbert(client) {
+  let comicImageUrl;
+
+  // Scrape today's dilbert comic from the website
+  try {
+    const dilbertUrl = 'https://dilbert.com/';
+
+    // Need to match the first instance of class img-comic and return the src property, which is the comic image
+    const response = await got(dilbertUrl);
+    const $ = cheerio.load(response.body);
+
+    comicImageUrl = $('.img-comic:first').attr('src');
+  } catch (error) {
+    logger.error('Failed to get the dilbert comic image url', error);
+  }
+
+  if (comicImageUrl.length > 0) {
+    // Find the channel and send the comic
+    try {
+      const channel = client.channels.cache.find((channel) => channel.name === 'daily-dilbert');
+      channel.send(comicImageUrl);
+    } catch (error) {
+      logger.error('Failed to find the daily dilbert channel and send a message', error);
+    }
   }
 }
