@@ -94,6 +94,8 @@ function commandUrbanDictionary(Discord, config, logger, message, command, args)
     .catch(function (error) {
       logger.error('Failed to make GET request to Urban Dictionary API', error);
     });
+  }
+}
 
 async function sendDailyDilbert(client) {
   let comicImageUrl;
