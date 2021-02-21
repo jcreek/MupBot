@@ -130,6 +130,38 @@ function commandModDisable (Discord, config, logger, message, command, args) {
 
 function commandModExample (Discord, config, logger, message, command, args) {
   // This would be a Mod command that can be enabled and disabled using the enableModCommands variable
+  const rulesBeginning = '```md';
+  const rulesEnding = '```';
+  const rulesText = `
+${rulesBeginning}
+# Rules
+0. Don't spam ping Zoclhas or @Zochy
+1. Remember we should follow all the rules
+2. Do not discriminate or be disrespectful to users of our server.
+3. Do not attempt to spam or flood channels.
+4. Please do not attempt to create drama.
+5. Offensive avatars and names are not tolerated.
+6. Only ENGLISH is allowed in text-channels.
+7. Don't use alternative accounts in order to cause issues.
+8. Don’t advertise. < Except in the Self-Promo Channel >
+9. Don't spam mentions of roles.
+10. Do not disrespect any staff member. They're here to help!
+11. Mutes, kicks and bans are entirely up to staff discretion. Arguing with staff is probably a waste of your time. We reserve the right to ban for anything we forgot to list here.
+12. Do not beg for roles, as there is a fair chance that you will not get the role you’re begging for. Only staff decide if you get a role
+13. Do not post any images that is NSFW.
+14. You can't post any links.
+
+# Note
+If you are muted, await your punishment. Leaving and re-joining to avoid it will result in a permanent ban.
+If you feel like you've been unfairly punished, please contact any staff members.
+Also, these rules can or will be edited in the future.
+
+# Notes for Mods and Admins
+If you are given the role of mod or admin, it does not grant you server rights. And abusing your power will lead to a demotion <i.e If you are an admin, you will get demoted to mod. And if you are a mod, your status will be taken away>. You might get your status back, if you perform well normally.
+${rulesEnding}
+  `;
+  const embed = generateEmbedMessage(Discord, logger, message, 'Rules', rulesText);
+  message.channel.send(embed);
 }
 
 async function sendDailyDilbert(client) {
