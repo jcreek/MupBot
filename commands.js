@@ -3,6 +3,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const got = require('got');
 
+let enableModCommands = false;
 const adultChannelName = 'adult-only-chat';
 
 module.exports = {
@@ -23,6 +24,20 @@ module.exports = {
           message.channel.send(`This command is restricted to the <#${channel.id}> channel.`);
         }
         break;
+      case 'enablemod':
+        commandModEnable(Discord, config, logger, message, command, args);
+        break;
+      case 'disablemod':
+        commandModDisable(Discord, config, logger, message, command, args);
+        break;
+        case 'examplemod':
+          if(enableModCommands) {
+            commandModExample(Discord, config, logger, message, command, args);
+          }
+          else {
+            message.channel.send(`That command is currently disabled. To find out more visit ${config.github_url}`);
+          }
+          break;
       default:
         message.channel.send(`That command is not one I know yet - but you could add it! To find out more visit ${config.github_url}`);
     }
@@ -51,7 +66,7 @@ The commands available to you are:
   }
 }
 
-function commandUrbanDictionary(Discord, config, logger, message, command, args) {
+function commandUrbanDictionary (Discord, config, logger, message, command, args) {
   if (!args.length) {
     //If the command is used incorrectly without arguments
     return message.channel.send(`You didn't provide any arguments, ${message.author}!\nCorrect Usage: \`${config.prefix}ud <query>\``);
@@ -103,6 +118,18 @@ function commandUrbanDictionary(Discord, config, logger, message, command, args)
       logger.error('Failed to make GET request to Urban Dictionary API', error);
     });
   }
+}
+
+function commandModEnable (Discord, config, logger, message, command, args) {
+  enableModCommands = true;
+}
+
+function commandModDisable (Discord, config, logger, message, command, args) {
+  enableModCommands = false;
+}
+
+function commandModExample (Discord, config, logger, message, command, args) {
+  // This would be a Mod command that can be enabled and disabled using the enableModCommands variable
 }
 
 async function sendDailyDilbert(client) {
