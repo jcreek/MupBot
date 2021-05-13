@@ -9,6 +9,7 @@ const adultChannelName = 'adult-only-chat';
 module.exports = {
   dailyTasks: function (client) {
     sendDailyDilbert(client);
+    sendDailyWorkChronicles(client);
   },
   matchCommand: function (Discord, config, logger, message, command, args) {
     switch(command) {
@@ -155,6 +156,33 @@ async function sendDailyDilbert(client) {
       channel.send(comicImageUrl);
     } catch (error) {
       logger.error('Failed to find the daily dilbert channel and send a message', error);
+    }
+  }
+}
+
+async function sendDailyWorkChronicles(client) {
+  let comicImageUrl;
+
+  // Scrape today's Work Chronicles comic from the website
+  try {
+    const comicUrl = 'https://workchronicles.com/';
+
+    // Need to match the first instance of class wp-block-latest-posts__featured-image and return the src property, which is the comic image
+    const response = await got(comicUrl);
+    const $ = cheerio.load(response.body);
+
+    comicImageUrl = $('.wp-block-latest-posts__featured-image:first').attr('src');
+  } catch (error) {
+    logger.error('Failed to get the Work Chronicles comic image url', error);
+  }
+
+  if (comicImageUrl.length > 0) {
+    // Find the channel and send the comic
+    try {
+      const channel = client.channels.cache.find((channel) => channel.name === 'daily-work-chronicles');
+      channel.send(comicImageUrl);
+    } catch (error) {
+      logger.error('Failed to find the daily Work Chronicles channel and send a message', error);
     }
   }
 }
